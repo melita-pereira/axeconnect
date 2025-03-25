@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
+//const mongoose = require('mongoose');
 const {Pool} = require('pg');
 require('dotenv').config();
 
@@ -20,10 +20,10 @@ pool.connect((err) => {
     }
 });
 
-mongoose
-.connect(process.env.MONGO_URI)
-.then(() => console.log('Connected to MongoDB successfully!'))
-.catch((err) => console.error('Error connecting to MongoDB:', err));
+//mongoose
+//.connect(process.env.MONGO_URI)
+//.then(() => console.log('Connected to MongoDB successfully!'))
+//.catch((err) => console.error('Error connecting to MongoDB:', err));
 
 app.get('/', (req, res) => {
     res.send('Backend is running!');
