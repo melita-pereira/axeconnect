@@ -17,6 +17,7 @@ pool.connect((err) => {
     }
 });
 
+//will expand onto mongoose if project demands it
 //mongoose
 //.connect(process.env.MONGO_URI)
 //.then(() => console.log('Connected to MongoDB successfully!'))
