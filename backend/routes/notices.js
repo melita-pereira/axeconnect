@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../db');
+const authMiddleware = require('../middleware/authMiddleware');
 
 router.get('/', async (req, res) => {
     try {
@@ -12,7 +13,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/api/notices', async (req, res) => {
+router.post('/api/notices', authMiddleware, async (req, res) => {
     const {title, description} = req.body;
     if (!title || !description) {
         return res.status(400).send('Title and description are required');
@@ -29,7 +30,7 @@ router.post('/api/notices', async (req, res) => {
     }
 });
 
-router.put('/api/notices/:id', async(req, res) => {
+router.put('/api/notices/:id', authMiddleware, async(req, res) => {
     const {id} = req.params;
     const {title, description} = req.body;
     try {
@@ -47,7 +48,7 @@ router.put('/api/notices/:id', async(req, res) => {
     }
 });
 
-router.delete('/api/notices/:id', async (req, res) => {
+router.delete('/api/notices/:id', authMiddleware, async (req, res) => {
     const {id} = req.params;
     try {
         const result = await pool.query(
